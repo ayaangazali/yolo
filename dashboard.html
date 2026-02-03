@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - YOLO</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon"></span>
+                <span class="logo-text">YOLO</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span></span> Dashboard
+                </a>
+                <a href="#" class="nav-item">
+                    <span></span> Finance
+                </a>
+                <a href="#" class="nav-item">
+                    <span></span> HR
+                </a>
+                <a href="#" class="nav-item">
+                    <span></span> Legal
+                </a>
+                <a href="#" class="nav-item">
+                    <span></span> IT
+                </a>
+                <a href="#" class="nav-item">
+                    <span></span> Marketing
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">T</div>
+                    <div class="user-details">
+                        <div class="user-name">Test User</div>
+                        <div class="user-email">test@yolo.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="dashboard-header">
+                <div>
+                    <h1>Welcome to YOLO</h1>
+                    <p>Your AI-powered company builder</p>
+                </div>
+                <button class="new-project-btn">+ New Project</button>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🎯 Quick Start</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Start building your company with AI agents</p>
+                        <button class="card-btn">Get Started</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>Finance Department</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Automate taxes, expenses, and financial workflows</p>
+                        <button class="card-btn">Configure</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>👥 HR Department</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Manage hiring, onboarding, and team operations</p>
+                        <button class="card-btn">Configure</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>⚖️ Legal Department</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Handle contracts, compliance, and legal workflows</p>
+                        <button class="card-btn">Configure</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>💻 IT Department</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Manage infrastructure and technical operations</p>
+                        <button class="card-btn">Configure</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📢 Marketing Department</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Automate lead generation and content creation</p>
+                        <button class="card-btn">Configure</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

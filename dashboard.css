@@ -24,14 +24,80 @@ body {
     display: flex;
     flex-direction: column;
     padding: 30px 20px;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .nav-text {
+    display: none;
+}
+
+.sidebar.collapsed .user-details {
+    display: none;
+}
+
+.sidebar.collapsed .logout-btn {
+    padding: 10px;
+    font-size: 0;
+}
+
+.sidebar.collapsed .logout-btn::before {
+    content: "↪";
+    font-size: 1.2rem;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 40px;
     padding: 0 10px;
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.hamburger-btn:hover {
+    background: #f5f7fa;
+}
+
+.hamburger-btn span {
+    width: 22px;
+    height: 2px;
+    background: #333;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.sidebar.collapsed .hamburger-btn span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.sidebar.collapsed .hamburger-btn span:nth-child(2) {
+    opacity: 0;
+}
+
+.sidebar.collapsed .hamburger-btn span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 .logo-icon {
@@ -60,10 +126,16 @@ body {
     color: #666;
     font-weight: 500;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 
-.nav-item span {
+.nav-item span:first-child {
     font-size: 1.3rem;
+    min-width: 20px;
+}
+
+.nav-item.removed {
+    display: none;
 }
 
 .nav-item:hover {
@@ -74,6 +146,35 @@ body {
 .nav-item.active {
     background: #4d9ce8;
     color: white;
+}
+
+.department-actions {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.manage-dept-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f5f7fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #333;
+}
+
+.manage-dept-btn:hover {
+    background: #e5e7eb;
+}
+
+.sidebar.collapsed .manage-dept-btn .nav-text {
+    display: none;
 }
 
 .sidebar-footer {
@@ -141,6 +242,8 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 40px;
+    padding-bottom: 120px;
+    position: relative;
 }
 
 .dashboard-header {
@@ -179,59 +282,163 @@ body {
     box-shadow: 0 4px 12px rgba(77, 156, 232, 0.3);
 }
 
-/* Dashboard Grid */
-.dashboard-grid {
+/* Categories Section */
+.categories-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+}
+
+.category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.dashboard-card {
-    background: white;
+/* Category Cards - App Store Style */
+.category-card {
+    background: #f8f9fa;
     border-radius: 16px;
-    border: 1px solid #e5e7eb;
-    overflow: hidden;
-    transition: all 0.3s;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+    min-height: 140px;
 }
 
-.dashboard-card:hover {
+.category-card:hover {
+    background: #fff;
+    border-color: #e5e7eb;
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.card-header {
-    padding: 24px 24px 16px;
-    border-bottom: 1px solid #f5f7fa;
-}
-
-.card-header h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.card-content {
-    padding: 20px 24px 24px;
-}
-
-.card-content p {
-    color: #666;
+.category-icon {
+    font-size: 2rem;
     margin-bottom: 16px;
-    line-height: 1.5;
+    color: #e85d04;
 }
 
-.card-btn {
-    padding: 10px 20px;
-    background: #f5f7fa;
-    color: #000;
+.category-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.category-count {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: auto;
+}
+
+.show-more-btn {
+    background: none;
     border: none;
-    border-radius: 8px;
+    color: #1a1a1a;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
 }
 
-.card-btn:hover {
-    background: #e5e7eb;
+.show-more-btn:hover {
+    color: #4d9ce8;
+}
+
+/* Glassmorphism Footer Input */
+.glass-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 280px;
+    right: 0;
+    padding: 20px 40px 30px;
+    background: linear-gradient(to top, rgba(245, 247, 250, 1) 0%, rgba(245, 247, 250, 0.95) 50%, rgba(245, 247, 250, 0) 100%);
+    z-index: 100;
+    transition: left 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content .glass-input-container,
+.sidebar.collapsed + .main-content .glass-input-container {
+    left: 80px;
+}
+
+.glass-input-wrapper {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    padding: 8px 8px 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 
+                0 2px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.glass-input-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(77, 156, 232, 0.4);
+    box-shadow: 0 8px 32px rgba(77, 156, 232, 0.15), 
+                0 2px 8px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.glass-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #1a1a1a;
+    outline: none;
+    padding: 12px 0;
+}
+
+.glass-input::placeholder {
+    color: #999;
+}
+
+.glass-submit-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #4d9ce8;
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.glass-submit-btn:hover {
+    background: #3d8cd8;
+    transform: scale(1.05);
+}
+
+.glass-submit-btn:active {
+    transform: scale(0.95);
 }
 
 /* Responsive */
@@ -255,11 +462,20 @@ body {
     .sidebar-footer {
         display: none;
     }
+
+    .glass-input-container {
+        left: 0;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;
+        padding-bottom: 120px;
     }
 
     .dashboard-header {
@@ -268,7 +484,24 @@ body {
         gap: 20px;
     }
 
-    .dashboard-grid {
-        grid-template-columns: 1fr;
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .glass-input-container {
+        padding: 15px 20px 25px;
+    }
+
+    .glass-input-wrapper {
+        padding: 6px 6px 6px 20px;
+    }
+
+    .glass-input {
+        font-size: 0.9rem;
+    }
+
+    .glass-submit-btn {
+        width: 40px;
+        height: 40px;
     }
 }

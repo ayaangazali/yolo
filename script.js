@@ -1,11 +1,13 @@
 // Typing animation for input placeholder
 const typingInput = document.getElementById('typing-input');
 const phrases = [
-    "Build an Asian food restaurant business",
-    "Create a fitness app for seniors",
-    "Design a property management system",
-    "Build a subscription tracking app",
-    "Create an inventory management tool"
+    "NFL Super Bowl halftime ad...",
+    "Create a Chiefs playoff hype video...",
+    "Build a Super Bowl beer commercial...",
+    "Generate a sports car Super Bowl ad...",
+    "Make an NFL team merchandise campaign...",
+    "Create an epic game day commercial...",
+    "Build a Super Bowl snack food ad..."
 ];
 
 let phraseIndex = 0;
@@ -86,29 +88,12 @@ document.querySelectorAll('button').forEach(button => {
     });
 });
 
-// Auth button logic - redirect to login page
-const authBtn = document.querySelector('.auth-btn');
-const user = JSON.parse(localStorage.getItem('yolo_user'));
-
-if (user && user.loggedIn) {
-    authBtn.textContent = 'Dashboard';
-    authBtn.addEventListener('click', () => {
-        window.location.href = 'dashboard.html';
-    });
-} else {
-    authBtn.textContent = 'Sign Up';
-    authBtn.addEventListener('click', () => {
-        window.location.href = 'login.html';
-    });
-}
-
-// Redirect Build button and option buttons to login
-document.querySelector('.hero-btn')?.addEventListener('click', () => {
-    window.location.href = 'login.html';
-});
-
-document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        window.location.href = 'login.html';
-    });
+// Simple button logging (no auth/routing for now)
+document.querySelectorAll('button').forEach(button => {
+    if (!button.hasAttribute('data-listener')) {
+        button.setAttribute('data-listener', 'true');
+        button.addEventListener('click', function(e) {
+            console.log('Button clicked:', this.textContent);
+        });
+    }
 });
